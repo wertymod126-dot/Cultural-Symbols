@@ -1,51 +1,7 @@
 import React, { useState } from 'react';
 import { BookOpen, Globe2, Network, Feather, Milestone, Flame, Search, Languages, ChevronLeft, ChevronRight } from 'lucide-react';
 
-import absoluteCinemaImg from '/src/imports/absolutecinema.jpg';
-import looksmaxxingImg from '@/imports/looksmaxxing.jpg';
-import suetaImg from '@/imports/sueta.jpg';
-import meme4Img from '@/imports/401d9c9f0ee7b4fb62852c8516f3df2c.jpg';
-import meme5Img from '@/imports/a723e172adfc8e1121eca8eb60d14659.jpg';
 
-interface Meme {
-  src: string;
-  alt: string;
-  title?: string;
-  symbolism?: string;
-  communication?: string;
-}
-
-const memes: Meme[] = [
-  {
-    src: absoluteCinemaImg,
-    alt: 'Absolute Cinema — Мартин Скорсезе',
-    title: '«Absolute Cinema»',
-    symbolism: 'Возведение банальной или абсурдной жизненной ситуации в ранг великого искусства.',
-    communication: 'Реакция на сочные сплетни, неожиданный поворот сюжета в переписке или эпичный бытовой конфликт.',
-  },
-  {
-    src: looksmaxxingImg,
-    alt: 'Mewing / Bye Bye — looksmaxxing',
-    title: '«Mewing / Bye Bye»',
-    symbolism: 'Символ доведенного до абсурда самосовершенствования (looksmaxxing) и демонстративного невербального превосходства.',
-    communication: 'Знак выхода из бессмысленного спора — демонстративное молчание в ответ на глупый вопрос («я выше этих разговоров»).',
-  },
-  {
-    src: suetaImg,
-    alt: 'Суета — навести суету',
-    title: '«Суета»',
-    symbolism: 'Переосмысление термина из знака суматохи в индикатор бурной жизнедеятельности, авантюр, создания шумихи и резкого взвинчивания динамики событий.',
-    communication: 'Сигнал к спонтанным встречам, шуточным провокациям или объявлению о начале интенсивного рабочего процесса («пора навести суету в коде перед дедлайном»).',
-  },
-  {
-    src: meme4Img,
-    alt: 'Мем — Родится отморозок',
-  },
-  {
-    src: meme5Img,
-    alt: 'Мем — Браток, ми тупие',
-  },
-];
 
 const OrnamentalDivider = () => (
   <div className="flex items-center justify-center gap-4 my-16 opacity-70">
@@ -56,6 +12,7 @@ const OrnamentalDivider = () => (
     <div className="h-px w-24 bg-[var(--color-rule)]"></div>
   </div>
 );
+// dsd
 
 export default function App() {
   return (
