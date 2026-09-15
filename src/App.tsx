@@ -1,5 +1,51 @@
-import React from 'react';
-import { BookOpen, Globe2, Network, Feather, Milestone, Flame, Search, Languages } from 'lucide-react';
+import React, { useState } from 'react';
+import { BookOpen, Globe2, Network, Feather, Milestone, Flame, Search, Languages, ChevronLeft, ChevronRight } from 'lucide-react';
+
+import absoluteCinemaImg from '@/imports/absolutecinema.jpg';
+import looksmaxxingImg from '@/imports/looksmaxxing.jpg';
+import suetaImg from '@/imports/sueta.jpg';
+import meme4Img from '@/imports/401d9c9f0ee7b4fb62852c8516f3df2c.jpg';
+import meme5Img from '@/imports/a723e172adfc8e1121eca8eb60d14659.jpg';
+
+interface Meme {
+  src: string;
+  alt: string;
+  title?: string;
+  symbolism?: string;
+  communication?: string;
+}
+
+const memes: Meme[] = [
+  {
+    src: absoluteCinemaImg,
+    alt: 'Absolute Cinema — Мартин Скорсезе',
+    title: '«Absolute Cinema»',
+    symbolism: 'Возведение банальной или абсурдной жизненной ситуации в ранг великого искусства.',
+    communication: 'Реакция на сочные сплетни, неожиданный поворот сюжета в переписке или эпичный бытовой конфликт.',
+  },
+  {
+    src: looksmaxxingImg,
+    alt: 'Mewing / Bye Bye — looksmaxxing',
+    title: '«Mewing / Bye Bye»',
+    symbolism: 'Символ доведенного до абсурда самосовершенствования (looksmaxxing) и демонстративного невербального превосходства.',
+    communication: 'Знак выхода из бессмысленного спора — демонстративное молчание в ответ на глупый вопрос («я выше этих разговоров»).',
+  },
+  {
+    src: suetaImg,
+    alt: 'Суета — навести суету',
+    title: '«Суета»',
+    symbolism: 'Переосмысление термина из знака суматохи в индикатор бурной жизнедеятельности, авантюр, создания шумихи и резкого взвинчивания динамики событий.',
+    communication: 'Сигнал к спонтанным встречам, шуточным провокациям или объявлению о начале интенсивного рабочего процесса («пора навести суету в коде перед дедлайном»).',
+  },
+  {
+    src: meme4Img,
+    alt: 'Мем — Родится отморозок',
+  },
+  {
+    src: meme5Img,
+    alt: 'Мем — Браток, ми тупие',
+  },
+];
 
 const OrnamentalDivider = () => (
   <div className="flex items-center justify-center gap-4 my-16 opacity-70">
@@ -11,10 +57,101 @@ const OrnamentalDivider = () => (
   </div>
 );
 
+const MemeCarousel = () => {
+  const [index, setIndex] = useState(0);
+  const current = memes[index];
+  const hasDescription = !!(current.title && current.symbolism);
+
+  const prev = () => setIndex((i) => (i - 1 + memes.length) % memes.length);
+  const next = () => setIndex((i) => (i + 1) % memes.length);
+
+  return (
+    <section className="scroll-mt-24 mt-24">
+      <div className="text-center mb-12">
+        <p className="text-[var(--color-gold)] uppercase tracking-[0.25em] text-sm font-semibold mb-4">Цифровой фольклор</p>
+        <h2 className="font-[var(--font-display)] text-4xl text-[var(--color-burgundy)]">
+          Мем как символ эпохи
+        </h2>
+        <p className="text-[var(--color-ink-muted)] mt-4 max-w-xl mx-auto">
+          Интернет-мем — современная форма культурного символа: компрессированный смысл, мгновенно считываемый участниками одного семиотического поля.
+        </p>
+      </div>
+
+      <div className="bg-[var(--color-parchment-dark)] border border-[var(--color-rule)] rounded-sm overflow-hidden shadow-lg">
+        {/* Image area */}
+        <div className="relative flex items-center justify-center bg-[var(--color-ink)]/5 min-h-[320px] md:min-h-[440px] select-none">
+          <button
+            onClick={prev}
+            aria-label="Предыдущий"
+            className="absolute left-3 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-[var(--color-parchment)]/80 border border-[var(--color-rule)] text-[var(--color-ink)] hover:bg-[var(--color-parchment)] hover:text-[var(--color-burgundy)] transition-colors shadow-sm"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          <img
+            key={index}
+            src={current.src}
+            alt={current.alt}
+            className="max-h-[420px] max-w-full object-contain py-6 px-16"
+            style={{ display: 'block' }}
+          />
+
+          <button
+            onClick={next}
+            aria-label="Следующий"
+            className="absolute right-3 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-[var(--color-parchment)]/80 border border-[var(--color-rule)] text-[var(--color-ink)] hover:bg-[var(--color-parchment)] hover:text-[var(--color-burgundy)] transition-colors shadow-sm"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Description area */}
+        <div className="border-t border-[var(--color-rule)] px-8 py-7 min-h-[140px]">
+          {hasDescription ? (
+            <div>
+              <h3 className="font-[var(--font-display)] text-2xl text-[var(--color-ink)] mb-4">{current.title}</h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-[var(--color-gold)] font-semibold mb-2">Символическое значение</p>
+                  <p className="text-[var(--color-ink-muted)] leading-relaxed">{current.symbolism}</p>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-[var(--color-gold)] font-semibold mb-2">В коммуникации</p>
+                  <p className="text-[var(--color-ink-muted)] leading-relaxed">{current.communication}</p>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <p className="text-center text-[var(--color-ink-light)] italic text-sm pt-4">
+              Просто хороший мем. Без академического анализа.
+            </p>
+          )}
+        </div>
+
+        {/* Dot indicators */}
+        <div className="flex justify-center gap-2 pb-5 pt-1">
+          {memes.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIndex(i)}
+              aria-label={`Мем ${i + 1}`}
+              className={`w-2 h-2 rounded-full transition-all ${
+                i === index
+                  ? 'bg-[var(--color-burgundy)] w-4'
+                  : 'bg-[var(--color-rule)] hover:bg-[var(--color-gold)]'
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 export default function App() {
   return (
     <div className="min-h-screen bg-[var(--color-parchment)] text-[var(--color-ink)] font-[var(--font-body)]">
-      
+
       {/* Sticky Navigation */}
       <nav className="sticky top-0 z-50 bg-[var(--color-parchment)]/90 backdrop-blur-md border-b border-[var(--color-rule)]">
         <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between text-sm uppercase tracking-widest font-semibold text-[var(--color-ink-muted)]">
@@ -47,7 +184,7 @@ export default function App() {
       </header>
 
       <main className="max-w-4xl mx-auto px-6 pb-32">
-        
+
         {/* Introduction */}
         <section className="prose prose-lg md:prose-xl max-w-none text-[var(--color-ink-muted)]">
           <p className="first-letter:text-7xl first-letter:font-[var(--font-display)] first-letter:text-[var(--color-burgundy)] first-letter:mr-3 first-letter:float-left">
@@ -137,12 +274,12 @@ export default function App() {
           <h2 className="font-[var(--font-display)] text-4xl text-center mb-16 text-[var(--color-burgundy)]">
             Символы в мировой культуре
           </h2>
-          
+
           <figure className="mb-16">
             <div className="aspect-[21/9] w-full overflow-hidden rounded-sm mb-6 border-4 border-[var(--color-parchment-dark)] shadow-xl relative">
                <div className="absolute inset-0 bg-[var(--color-burgundy)]/10 mix-blend-multiply z-10 pointer-events-none"></div>
-               <img 
-                 src="https://images.unsplash.com/photo-1601887389937-0b02c26b602c?ixlib=rb-4.1.0&auto=format&fit=crop&w=1600&q=80" 
+               <img
+                 src="https://images.unsplash.com/photo-1601887389937-0b02c26b602c?ixlib=rb-4.1.0&auto=format&fit=crop&w=1600&q=80"
                  alt="Classical marble statue"
                  className="w-full h-full object-cover grayscale opacity-90"
                />
@@ -159,8 +296,13 @@ export default function App() {
           </div>
         </section>
 
-        {/* Final Section - This is what was requested to be finished */}
-        <section id="communication" className="scroll-mt-24 mt-24 pt-16 border-t-2 border-double border-[var(--color-rule)]">
+        {/* Meme Carousel */}
+        <MemeCarousel />
+
+        <OrnamentalDivider />
+
+        {/* Final Section */}
+        <section id="communication" className="scroll-mt-24 mt-8 pt-16 border-t-2 border-double border-[var(--color-rule)]">
           <div className="text-center mb-12">
             <Network className="w-12 h-12 text-[var(--color-burgundy)] mx-auto mb-6" />
             <h2 className="font-[var(--font-display)] text-4xl md:text-5xl text-[var(--color-burgundy)]">
@@ -171,8 +313,8 @@ export default function App() {
           <div className="grid md:grid-cols-12 gap-12 items-center mb-12">
             <div className="md:col-span-5 relative">
               <div className="absolute -inset-4 border border-[var(--color-gold)]/30 rounded-sm transform rotate-3"></div>
-              <img 
-                 src="https://images.unsplash.com/photo-1602660187275-7275b639d7ea?ixlib=rb-4.1.0&auto=format&fit=crop&w=800&q=80" 
+              <img
+                 src="https://images.unsplash.com/photo-1602660187275-7275b639d7ea?ixlib=rb-4.1.0&auto=format&fit=crop&w=800&q=80"
                  alt="Ancient manuscript"
                  className="w-full h-auto rounded-sm relative z-10 sepia-[0.3]"
               />
@@ -196,7 +338,7 @@ export default function App() {
 
           <div className="text-lg text-[var(--color-ink-muted)] leading-relaxed">
             <p className="mb-6">
-              Современный этап развития общества, характеризующийся процессами глобализации и дигитализации, приводит к формированию новой, глобальной символической среды. В ней традиционные локальные символы переплетаются с новыми, транснациональными знаками массовой культуры. 
+              Современный этап развития общества, характеризующийся процессами глобализации и дигитализации, приводит к формированию новой, глобальной символической среды. В ней традиционные локальные символы переплетаются с новыми, транснациональными знаками массовой культуры.
             </p>
             <p>
               В конечном итоге, способность культуры порождать, сохранять и транслировать символы является показателем ее жизненной силы. Пока живы символы, жива и сама культура, продолжая свой бесконечный диалог в пространстве и времени.
@@ -209,8 +351,8 @@ export default function App() {
       <footer className="bg-[var(--color-ink)] text-[var(--color-parchment)] py-12 text-center border-t-8 border-[var(--color-burgundy)]">
         <div className="max-w-4xl mx-auto px-6">
           <BookOpen className="w-8 h-8 text-[var(--color-gold)] mx-auto mb-6" />
-          <p className="font-[var(--font-display)] text-xl text-[var(--color-gold-light)] mb-4">Zholdygaly Serzhan, Turan Astana University</p>
-          {/* <p className="text-sm opacity-60 uppercase tracking-widest font-mono">© 2024 Академический вестник</p> */}
+          <p className="font-[var(--font-display)] text-xl text-[var(--color-gold-light)] mb-2">Zholdygaly Serzhan</p>
+          <p className="text-sm opacity-70 tracking-widest font-mono uppercase">Turan Astana University</p>
         </div>
       </footer>
     </div>
