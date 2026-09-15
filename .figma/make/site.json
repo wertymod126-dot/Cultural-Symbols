@@ -1,0 +1,10 @@
+{
+  "description": "Explore cultural symbols and their significance in communication, enhancing understanding for students, researchers, and enthusiasts of cultural studies.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
