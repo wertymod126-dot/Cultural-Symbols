@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BookOpen, Globe2, Network, Feather, Milestone, Flame, Search, Languages, ChevronLeft, ChevronRight } from 'lucide-react';
 
-import absoluteCinemaImg from '@/imports/absolutecinema.jpg';
+import absoluteCinemaImg from '/src/imports/absolutecinema.jpg';
 import looksmaxxingImg from '@/imports/looksmaxxing.jpg';
 import suetaImg from '@/imports/sueta.jpg';
 import meme4Img from '@/imports/401d9c9f0ee7b4fb62852c8516f3df2c.jpg';
