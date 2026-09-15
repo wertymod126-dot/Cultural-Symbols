@@ -12,7 +12,6 @@ const OrnamentalDivider = () => (
     <div className="h-px w-24 bg-[var(--color-rule)]"></div>
   </div>
 );
-// dsd
 
 export default function App() {
   return (
@@ -162,8 +161,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* Meme Carousel */}
-        <MemeCarousel />
+        
 
         <OrnamentalDivider />
 
