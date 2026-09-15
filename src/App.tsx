@@ -209,8 +209,8 @@ export default function App() {
       <footer className="bg-[var(--color-ink)] text-[var(--color-parchment)] py-12 text-center border-t-8 border-[var(--color-burgundy)]">
         <div className="max-w-4xl mx-auto px-6">
           <BookOpen className="w-8 h-8 text-[var(--color-gold)] mx-auto mb-6" />
-          <p className="font-[var(--font-display)] text-xl text-[var(--color-gold-light)] mb-4">Исследования в области культурологии</p>
-          <p className="text-sm opacity-60 uppercase tracking-widest font-mono">© 2024 Академический вестник</p>
+          <p className="font-[var(--font-display)] text-xl text-[var(--color-gold-light)] mb-4">Zholdygaly Serzhan, Turan Astana University</p>
+          {/* <p className="text-sm opacity-60 uppercase tracking-widest font-mono">© 2024 Академический вестник</p> */}
         </div>
       </footer>
     </div>
